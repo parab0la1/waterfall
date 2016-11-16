@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	 xmlns:p="http://primefaces.org/ui">  
+<h:head>
+	<title>Waterfall Startpage</title>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet"
+		href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+</h:head>
+<h:body>
+
+	<h:outputStylesheet library="css" name="style.css" position="last" />
+
+	<h:outputScript library="script" name="script.js"/>
+
+	<b:navBar brand="Waterfall" brandHref="#">
+		<b:navbarLinks pull="right">
+			<h:form rendered="#{loginControllerBean.loggedInUser != null}">
+				<h:commandLink action="profile-page"
+					value="#{loginControllerBean.loggedInUser.firstName} #{loginControllerBean.loggedInUser.lastName}"
+					styleClass="link-profile-page" />
+			</h:form>
+			<h:form rendered="#{loginControllerBean.loggedInUser == null}">
+
+				<div class="login-username">
+					<b:inputText placeholder="Username" id="username"
+						value="#{loginControllerBean.username}" styleClass="input" />
+				</div>
+
+				<div class="login-password">
+					<b:inputSecret placeholder="Password" id="password"
+						value="#{loginControllerBean.password}" styleClass="input" />
+				</div>
+				<div class="login-btn-div">
+					<h:commandButton class="login-btn" action="#{loginControllerBean.loginUser()}"
+						value="Login" styleClass="submit-btn" />
+				</div>
+				
+			</h:form>
+				
+			 <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />			
+			
+			<h:form target="_blank"
+				rendered="#{loginControllerBean.loggedInUser == null}">
+				<h:commandLink action="reg-new-user" target="_self" value="Register"
+					styleClass="link-register-new-user" />
+			</h:form>
+		</b:navbarLinks>
+	</b:navBar>
+	
+
+	<b:container styleClass="filter-div">
+		<h:form id="filter-form">
+			<b:row>
+				<b:column styleClass="left-column">
+					<b:inputText value="#{filterControllerBean.tagList}" tags="true"
+						render-label="true" placeholder="Filter..."
+						styleClass="filter-input" class="search-field" />
+				</b:column>
+				<b:column styleClass="middle-column">
+					<h:commandButton value="Filter"
+						action="#{filterControllerBean.filterDrops()}" styleClass="filter-btn" />
+				</b:column>
+				<b:column styleClass="right-column">
+					<p class="clear-fields-link">
+						<h:commandLink value="X"
+							action="#{filterControllerBean.clearFilterInputFields()}" />
+					</p>
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<a class="more-filters-link">More filters</a>
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column span="1" class="show-more-filters">
+					<b:selectBooleanCheckbox caption="Male"
+						value="#{filterControllerBean.filteredByMale}" />
+				</b:column>
+
+				<b:column span="1" class="show-more-filters">
+					<b:selectBooleanCheckbox caption="Female"
+						value="#{filterControllerBean.filteredByFemale}" />
+				</b:column>
+
+				<b:column span="1" class="show-more-filters">
+					<b:selectBooleanCheckbox caption="Other"
+						value="#{filterControllerBean.filteredByOther}" />
+				</b:column>
+
+				<b:column class="show-more-filters" span="1">
+					<p id="age-tag">Age-span:</p>
+				</b:column>
+				<b:column class="show-more-filters" span="1">
+					<h:inputText styleClass="input-age-range" id="ageSpan"
+						value="#{filterControllerBean.ageSpan}" />
+				</b:column>
+				<b:column class="show-more-filters" span="3">
+					<div id="slider-range"></div>
+				</b:column>
+
+			</b:row>
+			<b:row>
+				<b:column class="show-more-filters" span="2">
+					<b:inputText id="first-name" styleClass="input"
+						placeholder="First name"
+						value="#{filterControllerBean.filterFirstName}" />
+				</b:column>
+				<b:column class="show-more-filters" span="2">
+					<b:inputText styleClass="input" placeholder="Last name"
+						value="#{filterControllerBean.filterLastName}" />
+				</b:column>
+				<b:column class="show-more-filters" span="2">
+					<b:inputText styleClass="input" placeholder="Username"
+						value="#{filterControllerBean.filterUsername}" />
+				</b:column>
+				<b:column class="show-more-filters" span="2">
+					<b:inputText styleClass="input" placeholder="City"
+						value="#{filterControllerBean.filterCity}" />
+				</b:column>
+				<b:column class="show-more-filters" span="2">
+					<b:inputText styleClass="input" placeholder="Country"
+						value="#{filterControllerBean.filterCountry}" />
+				</b:column>
+			</b:row>
+
+			<b:row>
+				<b:column styleClass="pool-column">
+					<b:inputText placeholder="Poolname"
+						value="#{filterControllerBean.poolname}"
+						rendered="#{loginControllerBean.loggedInUser != null}" />
+				</b:column>
+				<b:column styleClass="pool-column">
+					<h:commandButton value="Save"
+						action="#{filterControllerBean.saveFilterAsPool()}"
+						styleClass="save-pool-btn"
+						rendered="#{loginControllerBean.loggedInUser != null}" />
+				</b:column>
+				<b:column styleClass="pool-column">
+					<b:button rendered="#{loginControllerBean.loggedInUser != null}"
+						class="show-create-drop-div-btn" value="Drop something!" />
+				</b:column>
+			</b:row>
+		</h:form>
+
+
+		<div class="create-drop-div">
+			<h:form>
+				<h:inputTextarea rows="5" styleClass="input"
+					value="#{dropControllerBean.content}">
+				</h:inputTextarea>
+				<h:commandButton styleClass="submit-btn" value="Drop it!"
+					action="#{dropControllerBean.createNewDrop()}" />
+			</h:form>
+		</div>
+
+		<b:row styleClass="waterfall-column">
+			<b:column span="8">
+				<c:forEach var="drop" items="#{dropControllerBean.dropList}">
+					<div class="test">
+						<p class="waterfall-username">
+							#{drop.owner.username}
+						</p>
+						<p class="waterfall-creation-date">#{drop.getCreationDateFormatted()}</p>
+						<p class="waterfall-drop-content">#{drop.content}</p>
+						<p class="comment-here-description">
+							<b:button class="comment-link"
+								value="#{drop.getComments().size()} comments" look="link" />
+						</p>
+						<div class="create-comment-div">
+							<c:forEach var="comment" items="#{drop.getComments()}">
+								<div class="comment-content">
+									<p class="comment-username">
+										#{comment.owner.username} <span id="date-span">#{comment.getCreationDateFormatted()}</span>
+									</p>
+									<p>#{comment.content}</p>
+								</div>
+							</c:forEach>
+							<h:form rendered="#{loginControllerBean.loggedInUser != null}">
+								<b:inputText placeholder="Comment..."
+									value="#{commentControllerBean.content}" />
+								<h:commandButton styleClass="comment-btn" value="Comment"
+									action="#{commentControllerBean.createNewComment(drop.getDropId())}" />
+							</h:form>
+						</div>
+					</div>
+				</c:forEach>
+			</b:column>
+			<b:column span="2"
+				rendered="#{loginControllerBean.loggedInUser != null}">
+				<p id="my-pools-headline">My pools</p>
+				<h:form>
+					<c:forEach var="filter"
+						items="#{loginControllerBean.loggedInUser.filterList}">
+						<p class="filter-id">
+							<h:commandLink styleClass="filter-id" value="#{filter.poolname}"
+								action="#{filterControllerBean.setFiltersByPool(filter.filterid)}" />
+						</p>
+					</c:forEach>
+				</h:form>
+			</b:column>
+			<b:column span="2"
+				rendered="#{loginControllerBean.loggedInUser != null}">
+				<p id="my-pools-headline">My Contacts</p>
+				<h:form>
+					<c:forEach var="contactlist"
+						items="#{loginControllerBean.loggedInUser.contactList}">
+						<p class="filter-id">
+							<h:commandLink styleClass="filter-id" value="#{contactlist.contactlistname}" action="#{filterControllerBean.filterByContacts(contactlist)}"/>
+						</p>
+					</c:forEach>
+				</h:form>
+			</b:column>
+		</b:row>
+	</b:container>
+</h:body>
+</html>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+	<script src="resources/script/regscript.js" type="text/javascript" />
+	<title>Register new user</title>
+</h:head>
+
+<h:body>
+<p id="error-msg">#{registrationControllerBean.errorAsJson}</p>
+	<h:form id="reg-form">
+		<b:container>
+			<h1 class="header-for-reg-new-user">Register new user</h1>
+			<div class="reg-form-personal-info">
+				<h4>Personal information</h4>
+				<b:row>
+					<b:column span="6">
+						<b:inputText placeholder="First Name" id="firstName"
+							value="#{registrationControllerBean.firstName}"
+							styleClass="input"/>
+					</b:column>
+					<b:column span="6">
+						<b:inputText placeholder="Last Name" id="lastName"
+							value="#{registrationControllerBean.lastName}"
+							styleClass="input" />
+					</b:column>
+				</b:row>
+				<h:outputLabel value="Birthdate" />
+				<b:row>
+					<b:column span="4">
+						<b:selectOneMenu id="birthyear" value="#{registrationControllerBean.birthYear}">
+							<f:selectItem itemLabel="- Choose year -" itemValue="" />
+							<f:selectItems value="#{registrationControllerBean.years}"
+								var="year" itemValue="#{year}" itemLabel="#{year}"/>
+						</b:selectOneMenu>
+					</b:column>
+					<b:column span="4">
+						<b:selectOneMenu id="birthmonth" value="#{registrationControllerBean.birthMonth}">
+							<f:selectItem itemLabel="- Choose month -" itemValue="" />
+							<f:selectItem itemLabel="January" itemValue="01" />
+							<f:selectItem itemLabel="February" itemValue="02" />
+							<f:selectItem itemLabel="March" itemValue="03" />
+							<f:selectItem itemLabel="April" itemValue="04" />
+							<f:selectItem itemLabel="May" itemValue="05" />
+							<f:selectItem itemLabel="June" itemValue="06" />
+							<f:selectItem itemLabel="July" itemValue="07" />
+							<f:selectItem itemLabel="August" itemValue="08" />
+							<f:selectItem itemLabel="September" itemValue="09" />
+							<f:selectItem itemLabel="October" itemValue="10" />
+							<f:selectItem itemLabel="November" itemValue="11" />
+							<f:selectItem itemLabel="December" itemValue="12" />
+						</b:selectOneMenu>
+					</b:column>
+					<b:column span="4">
+						<b:selectOneMenu id="birthday" value="#{registrationControllerBean.birthDay}">
+							<f:selectItem itemLabel="- Choose date -" itemValue="" />
+							<f:selectItems value="#{registrationControllerBean.days}"
+								var="day" itemValue="#{day}" itemLabel="#{day}" />
+						</b:selectOneMenu>
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column>
+						<h:selectOneMenu id="gender" value="#{registrationControllerBean.gender}"
+							styleClass="input">
+							<f:selectItem itemValue="Male" itemLabel="Male" />
+							<f:selectItem itemValue="Female" itemLabel="Female" />
+							<f:selectItem itemValue="Other" itemLabel="Other" />
+						</h:selectOneMenu>
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column>
+						<b:inputText placeholder="City" id="city"
+							value="#{registrationControllerBean.city}"
+							styleClass="input" />
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column>
+						<h:selectOneMenu value="#{registrationControllerBean.country}"
+							styleClass="input">
+							<f:selectItems value="#{registrationControllerBean.allCountries}" />
+						</h:selectOneMenu>
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column>
+						<b:inputText placeholder="Email" id="email"
+							value="#{registrationControllerBean.email}"
+							styleClass="input" />
+					</b:column>
+				</b:row>
+			</div>
+
+			<div class="reg-form-user-info">
+				<h4>User information</h4>
+				<b:inputText placeholder="Choose a username" id="username"
+					value="#{registrationControllerBean.username}"
+					styleClass="input" />
+
+				<b:inputSecret placeholder="Choose a password" id="password"
+					value="#{registrationControllerBean.password}"
+					styleClass="input" />
+			</div>
+			<h:commandButton
+				id="reg-btn" action="#{registrationControllerBean.registerNewUser()}"
+				value="Register" styleClass="submit-btn"/>
+			<h:commandButton
+				action="index"
+				value="Back" styleClass="submit-btn"/>
+		</b:container>
+	</h:form>
+</h:body>
+</html>

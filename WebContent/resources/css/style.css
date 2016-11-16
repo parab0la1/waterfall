@@ -1,0 +1,477 @@
+/* ----- STYLES FOR REG-NEW-USER.XHTML ----- */
+h1 {
+	color: steelblue;
+	background: whitesmoke;
+	padding: 10px;
+	font-family: Tahoma;
+	text-align: center;
+	border-radius: 10px 10px 0 0;
+	margin-bottom: 5px;
+}
+
+body {
+	padding: 2em;
+}
+
+h4 {
+	color: steelblue;
+	font-family: Tahoma;
+	text-align: center;
+	margin-top: 0;
+}
+
+.reg-form-personal-info {
+	border: 2px solid #ccc;
+	padding: 1.5em;
+	margin-bottom: 5px;
+}
+
+.reg-form-user-info {
+	border: 2px solid #ccc;
+	padding: 1.5em;
+	border-radius: 0 0 10px 10px;
+}
+
+.reg-form-select-gender {
+	color: steelblue;
+}
+
+#error-msg {
+	display: none;
+}
+
+.input {
+	width: 100%;
+	padding: 5px 8px;
+	margin: 3px 0;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	color: steelblue;
+	font-family: Tahoma;
+	resize: none;
+}
+
+.input-age-range {
+	width: 100%;
+	padding: 5px 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	color: steelblue;
+	font-family: Tahoma;
+	resize: none;
+	margin-bottom: 15px;
+    margin-top: -10px;
+}
+
+.input-pool-name {
+	width: inherit;
+	padding: 5px 8px;
+	margin: 3px 0;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	color: steelblue;
+	font-family: Tahoma;
+	resize: none;
+}
+
+.age-span-input {
+	width: 30%;
+	padding: 5px 8px;
+	margin-left: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	color: steelblue;
+	font-family: Tahoma;
+}
+
+.error {
+	/* padding-top: 2px !important;
+	padding-bottom: 2px !important;
+	
+	border: 1px solid #ccc;
+	background-color: red;
+	 */
+	box-shadow: 0 0 3px #CC0000;
+	margin: 3px 0;
+	font-family: Tahoma;
+}
+
+.input:focus {
+	outline: none;
+	border: 1px solid steelblue;
+}
+
+.submit-btn {
+	background-color: steelblue;
+	color: white;
+	padding: 6px 10px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-family: Tahoma;
+}
+.logout-btn, .delete-btn {
+	background-color: steelblue;
+	color: white;
+	padding: 6px 10px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-family: Tahoma;
+}
+
+.filter-btn {
+	background-color: steelblue;
+    color: white;
+    padding: 10px;
+    border: none;
+    margin: 8px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: Tahoma;
+    width: 100%;
+}
+
+.save-pool-btn {
+	background-color: steelblue;
+    color: white;
+    padding: 7px 10px;
+	margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: Tahoma;
+    width: 100%;
+}
+
+.save-filter-btn {
+	background-color: steelblue;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: Tahoma;
+}
+
+.dropdown-age {
+	display: inline;
+}
+
+.checkbox {
+	display: inline;
+	margin-top: 11px;
+}
+
+/* ----- STYLES FOR INDEX.XHTML ----- */
+.show-more-filters {
+	display:none;
+}
+
+.create-drop-div {
+	display: none;
+	background-color: grey;
+	padding: 10px;
+	background: whitesmoke;
+	margin-bottom: 5px;
+}
+
+.create-comment-div {
+	display: none;
+}
+
+.create-drop-input {
+	resize: none;
+}
+
+.link-profile-page {
+	color: steelblue;
+	font-family: Tahoma;
+	font-size: 1.5em;
+}
+
+.link-register-new-user {
+	color: steelblue;
+	font-family: Tahoma;
+	float: right;
+}
+
+.navbar {
+	padding: 10px;
+}
+
+.login-username, .login-password, .login-btn-div {
+	display: inline-block;
+}
+
+.login-username-input, .login-password-input {
+	display: block;
+}
+
+.waterfall-column {
+	background-color: steelblue;
+	border-radius: 0 0 10px 10px;
+	margin-bottom: 40px;
+	padding: 1em;
+}
+
+.filter-div {
+	width: 100%;
+	color: steelblue;
+	background: whitesmoke;
+	padding: 10px;
+	font-family: Tahoma;
+	text-align: center;
+	border-radius: 10px 10px 0 0;
+}
+
+.navbar-default .navbar-brand {
+	color: steelblue;
+	font-family: Tahoma;
+}
+
+.form-update-user {
+	border: 2px solid #ccc;
+	padding: 1.5em;
+	border-radius: 10px;
+}
+
+.test {
+	margin: 1em;
+	padding: 1em;
+	border-radius: 10px;
+	background: whitesmoke;
+	border-radius: 10px;
+	text-align: left;
+}
+
+.test-comment {
+	padding: 1em;
+	border-radius: 10px;
+	background-color: whitesmoke;
+	border-radius: 10px;
+}
+
+.waterfall-username {
+	font-size: 1.2em;
+	display: inline-block;
+	font-weight: bold; 
+	color: steelblue;
+	font-family: Tahoma;
+}
+
+.comment-username {
+	color: steelblue;
+	font-family: Tahoma;
+	font-weight: bold;
+}
+
+.comment-creation-date {
+	color: dimgrey;
+	display: inline;
+	font-family: Tahoma;
+	color: steelblue;
+	float: right;
+}
+
+
+#date-span {
+	font-weight: normal;
+	font-size: 0.8em;
+	float: right;
+}
+
+.waterfall-creation-date {
+	color: dimgrey;
+	display: inline;
+	font-family: Tahoma;
+	color: steelblue;
+	float: right;
+}
+
+.waterfall-drop-content {
+	background: white;
+	padding: 1em;
+	border-radius: 10px;
+	font-family: Tahoma;
+	color: steelblue;
+}
+
+.comment-here-description {
+	text-align: center;
+}
+
+.arrow-down {
+	max-width: 20px;
+	align: center;
+}
+
+#slider-range {
+	width: 100%;
+}
+
+#age-tag {
+	display: inline-block;
+	text-align: left;
+    font-weight: bold;
+}
+
+.comment-btn {
+	background-color: steelblue;
+	color: white;
+	padding: 7px 10px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-family: Tahoma;
+}
+
+.bootstrap-tagsinput {
+	width: 100%;
+    margin: 8px 0;
+    padding: 10px;
+    font-size: 1.2em;
+    float: left;
+}
+
+.label-info {
+	background-color: steelblue;
+	margin: 2px;
+}
+
+.label {
+	color: steelblue;
+	margin-top: 6px;
+}
+
+.navbar-brand {
+	font-size: 40px;
+}
+
+.comment-content {
+	background: white;
+	padding: 0.5em;
+	border-radius: 10px;
+	font-family: Tahoma;
+	color: steelblue;
+	margin: 5px;
+}
+
+.show-create-drop-div-btn {
+	background-color: steelblue;
+	color: white;
+	padding: 7px 10px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-family: Tahoma;
+}
+
+#my-pools-headline {
+	font-size: 2em;
+	color: white;
+}
+
+.filter-id {
+	color: white;
+}
+
+.more-filters-link {
+	float: right;
+	font-size: 1.2em;
+	margin: 5px;
+	cursor: pointer;
+}
+
+.left-column {
+	width: 90%;
+}
+
+.middle-column {
+	width: 7%;
+}
+
+.right-column {
+	width: 3%;
+	font-size: 1.5em;
+	margin-top: 12px;
+}
+
+.pool-column {
+	width: 10%;
+}
+
+.clear-fields-link {
+	margin-left: -15px;
+}
+
+.contactlist-link{
+	color: steelblue;
+	font-size: 1.3em;
+    font-family: Tahoma;
+}
+.add-contact-to-contactlist, .find-contact-result-column {
+	display: none;
+}
+.contactlist-img{
+	width: 10%;
+}
+
+.update-user-info-img {
+	width: 10%;	
+}
+
+#update-user-info-link {
+	cursor: pointer;	
+}
+
+.contact-img {
+	width: 5%;
+	margin-left: 5px;
+}
+
+.remove-user-img {
+	width: 5%;
+	float: right;
+	
+}
+
+#add-list-form, #update-user-info-column {
+	display: none;
+}
+
+.add-user-img {
+	width: 30%;		
+}
+
+.add-img {
+	width: 30%;
+}
+
+.minus-img {
+	width: 5%;
+}
+
+#add-new-contact-link, #add-new-list-link {
+    margin-left: 15px;
+}
+
+.add-user-to-contactlist-column {
+	width: 20%;
+}
+
+.add-contact-contactlist-column, .name-list-input-column {
+	width: 60%;
+}
+
+.search-contact-contactlist-btn-column, .add-list-column {
+	width: 20%;
+}
+
+.logout-form {
+    display: inline;
+}

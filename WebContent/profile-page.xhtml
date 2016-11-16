@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Profile Page</title>
+</h:head>
+<h:body>
+	<h:outputStylesheet library="css" name="style.css" position="last" />
+	<h:outputScript library="script" name="script.js" />
+	<b:navBar brand="Waterfall" brandHref="index.xhtml">
+		<b:navbarLinks pull="right">
+			<h:form rendered="#{loginControllerBean.loggedInUser != null}">
+				<h:commandLink action="profile-page"
+					value="#{loginControllerBean.loggedInUser.firstName} #{loginControllerBean.loggedInUser.lastName}"
+					styleClass="link-profile-page" />
+			</h:form>
+			<h:form styleClass="logout-form"
+				rendered="#{loginControllerBean.loggedInUser != null}">
+				<h:commandButton value="Log out"
+					action="#{loginControllerBean.logOutUser()}"
+					styleClass="logout-btn" />
+			</h:form>
+			<a id="update-user-info-link"> <img class="update-user-info-img"
+				src="resources/img/settings.png" /></a>
+			<h:form rendered="#{loginControllerBean.loggedInUser == null}">
+				<h:messages></h:messages>
+
+				<div class="login-username">
+					<b:inputText placeholder="Username" id="username"
+						value="#{loginControllerBean.username}" styleClass="input" />
+				</div>
+				<div class="login-btn-div">
+					<h:commandButton action="#{loginControllerBean.loginUser()}"
+						value="Login" styleClass="submit-btn" />
+				</div>
+			</h:form>
+			<h:link rendered="#{loginControllerBean.loggedInUser == null}"
+				action="reg-new-user" target="_self" value="Register"
+				styleClass="link-register-new-user" />
+		</b:navbarLinks>
+	</b:navBar>
+
+	<b:container>
+
+		<b:column span="6">
+
+			<h1>My contacts</h1>
+			<p:messages id="messages" showDetail="true" autoUpdate="true"
+				closable="true" />
+
+			<b:row>
+				<b:button look="link" id="add-new-list-link" value="Add new list" />
+				<h:form id="add-list-form">
+					<b:column styleClass="name-list-input-column">
+						<b:inputText id="input-list-name"
+							value="#{userControllerBean.contactListName}"
+							placeholder="Name your list" />
+					</b:column>
+					<b:column styleClass="add-list-column">
+						<h:commandLink
+							action="#{userControllerBean.createNewContactlist()}">
+							<h:graphicImage styleClass="add-img" library="img" name="add.png" />
+						</h:commandLink>
+					</b:column>
+
+				</h:form>
+			</b:row>
+			<hr></hr>
+
+			<c:forEach var="contactList"
+				items="#{userControllerBean.contactLists}">
+				<div id="contactlist-div" class="contactlist-div">
+
+					<img class="contactlist-img" src="resources/img/group.png"></img>
+					<b:button look="link" styleClass="contactlist-link"
+						value="#{contactList.contactlistname}" />
+
+
+					<div class="add-contact-to-contactlist">
+						<b:row>
+						<b:column>
+							<c:forEach var="contact" items="#{contactList.contacts}">
+								<p>
+								<h:form>								
+									<img class="contact-img" src="resources/img/avatar.png"></img>#{contact.username}
+									<h:commandLink action="#{userControllerBean.removeUserFromContactList(contactList, contact)}">
+										<h:graphicImage library="img" styleClass="remove-user-img" name="remove-user.png"></h:graphicImage>
+									</h:commandLink>
+									</h:form>
+								</p>
+								
+							</c:forEach>
+						</b:column>
+
+							<h:form id="add-contact-form">
+								<b:column styleClass="add-contact-contactlist-column">
+									<b:inputText placeholder="Username..."
+										styleClass="input-add-user"
+										value="#{userControllerBean.usernameSearch}" />
+								</b:column>
+								<b:column styleClass="search-contact-contactlist-btn-column">
+									<h:commandLink
+										action="#{userControllerBean.addContactToList(contactList)}">
+										<h:graphicImage styleClass="add-user-img" library="img"
+											name="add-user.png" />
+									</h:commandLink>
+								</b:column>
+							</h:form>
+						</b:row>
+
+						<h:form>
+							<h:commandButton value="Delete list"
+								action="#{userControllerBean.removeContactList(contactList)}" styleClass="delete-btn">
+
+							</h:commandButton>
+
+						</h:form>
+					</div>
+				</div>
+				<hr></hr>
+			</c:forEach>
+
+		</b:column>
+		<b:column span="6">
+			<h:form id="update-user-info-column">
+				<h1>Update info</h1>
+				<h:messages></h:messages>
+
+				<b:row>
+					<b:column span="5">
+						<h:outputLabel value="First Name" styleClass="label" />
+					</b:column>
+					<b:column span="7">
+						<h:inputText value="#{loginControllerBean.loggedInUser.firstName}"
+							required="true" styleClass="input" />
+					</b:column>
+				</b:row>
+
+				<b:row>
+					<b:column span="5">
+						<h:outputLabel value="Last Name" styleClass="label" />
+					</b:column>
+					<b:column span="7">
+						<h:inputText value="#{loginControllerBean.loggedInUser.lastName}"
+							required="true" styleClass="input" />
+					</b:column>
+				</b:row>
+
+				<b:row>
+					<b:column span="5">
+						<h:outputLabel value="Email" styleClass="label" />
+					</b:column>
+					<b:column span="7">
+						<h:inputText value="#{loginControllerBean.loggedInUser.email}"
+							required="true" styleClass="input" />
+					</b:column>
+				</b:row>
+
+				<b:row>
+					<b:column span="5">
+						<h:outputLabel value="City" styleClass="label" />
+					</b:column>
+					<b:column span="7">
+						<h:inputText value="#{loginControllerBean.loggedInUser.city}"
+							required="true" styleClass="input" />
+					</b:column>
+				</b:row>
+
+				<b:row>
+					<b:column span="5">
+						<h:outputLabel value="Username" styleClass="label" />
+					</b:column>
+					<b:column span="7">
+						<h:inputText value="#{loginControllerBean.loggedInUser.username}"
+							required="true" styleClass="input" />
+					</b:column>
+				</b:row>
+
+				<b:row>
+					<b:column span="5">
+						<h:outputLabel value="Password" styleClass="label" />
+					</b:column>
+					<b:column span="7">
+						<h:inputSecret
+							value="#{loginControllerBean.loggedInUser.password}"
+							required="true" styleClass="input" />
+					</b:column>
+				</b:row>
+
+				<b:row>
+					<b:column span="5">
+						<h:outputLabel value="Country" styleClass="label" />
+					</b:column>
+					<b:column span="7">
+						<h:selectOneMenu
+							value="#{loginControllerBean.loggedInUser.country}"
+							styleClass="input">
+							<f:selectItems value="#{registrationControllerBean.allCountries}" />
+						</h:selectOneMenu>
+					</b:column>
+				</b:row>
+
+				<b:row>
+					<b:column span="5">
+						<h:outputLabel value="Gender" styleClass="label" />
+					</b:column>
+					<b:column span="7">
+						<h:selectOneMenu
+							value="#{loginControllerBean.loggedInUser.gender}"
+							styleClass="input">
+							<f:selectItem itemValue="Male" itemLabel="Male" />
+							<f:selectItem itemValue="Female" itemLabel="Female" />
+							<f:selectItem itemValue="Other" itemLabel="Other" />
+						</h:selectOneMenu>
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column span="12">
+						<h:commandButton
+							action="#{userControllerBean.updateUser(loginControllerBean.loggedInUser)}"
+							value="Save changes" styleClass="submit-btn" />
+					</b:column>
+				</b:row>
+
+			</h:form>
+		</b:column>
+	</b:container>
+
+</h:body>
+</html>
